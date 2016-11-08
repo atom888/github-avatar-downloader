@@ -22,7 +22,10 @@ function github_url(url) { //assigns URL with headed property that provides user
 };
 
 function getRepoContributors(repoOwner, repoName, cb) { // build API path with user/token and repoOwner/repoName inputs
-
+    if (!repoName || !repoUser) {
+      console.error("Please provide a valid Github Username and Repo.");
+      return;
+    }
     var requestURL = 'https://' + GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
 
     request(github_url(requestURL), function(err, response, body) { // passing the request - github_url - provides required headers for user-agent
